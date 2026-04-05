@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <!-- ============================================================
+       META TAGS — Update description, og:image, og:url as needed
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="[Your Community] Hub – Your all-in-one community link directory. Find every important link in one place." />
+  <meta name="theme-color" content="#07070f" />
+  <meta property="og:title" content="[Your Community] Hub" />
+  <meta property="og:description" content="All-in-One Links for [Your Community]. Find everything in one place." />
+  <meta property="og:type" content="website" />
+  <!-- ✏️ FAVICON — swap emoji for an <img> or .ico if you have one -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>" />
+  <!-- ✏️ PAGE TITLE — set automatically from CONFIG below -->
+  <title>[Your Community] Hub</title>
+
+  <!-- Tailwind CSS Play CDN — no build step needed -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter — optional, improves typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — theme tokens (dark + light)
+       ============================================================ */
+    :root {
+      --surface:       #07070f;
+      --surface-card:  #0f0f1c;
+      --surface-hover: #161628;
+      --border:        rgba(139, 92, 246, 0.14);
+      --text-primary:  #f1f5f9;
+      --text-secondary:#cbd5e1;
+      --text-muted:    #64748b;
+      --accent:        #a855f7;
+      --accent-blue:   #6366f1;
+      --accent-green:  #10b981;
+      --glow-color:    rgba(168, 85, 247, 0.12);
+    }
+    html.light {
+      --surface:       #f0f2fd;
+      --surface-card:  #ffffff;
+      --surface-hover: #e8ebff;
+      --border:        rgba(99, 102, 241, 0.18);
+      --text-primary:  #0f0e1a;
+      --text-secondary:#374151;
+      --text-muted:    #6b7280;
+      --glow-color:    rgba(99, 102, 241, 0.06);
+    }
+
+    /* ============================================================
+       BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      background-color: var(--surface);
+      color: var(--text-primary);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Subtle ambient glow blob at top of page */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -8%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      max-width: 700px;
+      height: 420px;
+      background: radial-gradient(ellipse at center, var(--glow-color) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ============================================================
+       SCROLLBAR
+       ============================================================ */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 99px; }
+
+    /* Hide scrollbar for pill row but keep it scrollable */
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+
+    /* ============================================================
+       GRADIENT TEXT
+       ============================================================ */
+    .gradient-text {
+      background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================================================
+       STICKY HEADER — glassmorphism
+       ============================================================ */
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(7, 7, 15, 0.85);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    html.light #site-header {
+      background: rgba(240, 242, 253, 0.85);
+    }
+
+    /* ============================================================
+       SEARCH BAR
+       ============================================================ */
+    .search-input {
+      background:   var(--surface-card);
+      border:       1px solid var(--border);
+      border-radius: 12px;
+      color:        var(--text-primary);
+      outline:      none;
+      transition:   border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-input:focus {
+      border-color: rgba(168, 85, 247, 0.55);
+      box-shadow:   0 0 0 3px rgba(168, 85, 247, 0.12);
+    }
+
+    /* ============================================================
+       CATEGORY PILLS
+       ============================================================ */
+    .cat-pill {
+      background:    var(--surface-card);
+      border:        1px solid var(--border);
+      color:         var(--text-secondary);
+      border-radius: 99px;
+      padding:       0.35rem 0.85rem;
+      font-size:     0.8rem;
+      font-weight:   500;
+      cursor:        pointer;
+      white-space:   nowrap;
+      transition:    all 0.18s;
+      user-select:   none;
+    }
+    .cat-pill:hover {
+      border-color: rgba(168, 85, 247, 0.35);
+      color:        var(--text-primary);
+      background:   var(--surface-hover);
+    }
+    .cat-pill.active {
+      background:   linear-gradient(135deg, #a855f7, #6366f1);
+      border-color: transparent;
+      color:        #fff;
+      box-shadow:   0 2px 14px rgba(168, 85, 247, 0.38);
+    }
+
+    /* ============================================================
+       SECTION DIVIDER
+       ============================================================ */
+    .section-divider {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* ============================================================
+       LINK CARDS
+       ============================================================ */
+    .link-card {
+      background:    var(--surface-card);
+      border:        1px solid var(--border);
+      border-radius: 14px;
+      padding:       0.95rem 1rem;
+      cursor:        pointer;
+      transition:    transform 0.22s cubic-bezier(0.4,0,0.2,1),
+                     box-shadow 0.22s cubic-bezier(0.4,0,0.2,1),
+                     border-color 0.22s;
+      position:      relative;
+      overflow:      hidden;
+    }
+    html.light .link-card {
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .link-card::after {
+      content:    '';
+      position:   absolute;
+      inset:      0;
+      background: linear-gradient(135deg, rgba(168,85,247,0.04), transparent 60%);
+      opacity:    0;
+      transition: opacity 0.22s;
+      pointer-events: none;
+    }
+    .link-card:hover {
+      transform:    translateY(-3px);
+      border-color: rgba(168, 85, 247, 0.45);
+      box-shadow:   0 0 0 1px rgba(168,85,247,0.18),
+                    0 10px 36px rgba(168,85,247,0.15),
+                    0 4px 12px rgba(0,0,0,0.35);
+    }
+    .link-card:hover::after { opacity: 1; }
+
+    /* Blue / green accent variants */
+    .link-card[data-color="blue"]:hover {
+      border-color: rgba(99,102,241,0.5);
+      box-shadow:   0 0 0 1px rgba(99,102,241,0.18),
+                    0 10px 36px rgba(99,102,241,0.14),
+                    0 4px 12px rgba(0,0,0,0.35);
+    }
+    .link-card[data-color="green"]:hover {
+      border-color: rgba(16,185,129,0.5);
+      box-shadow:   0 0 0 1px rgba(16,185,129,0.15),
+                    0 10px 36px rgba(16,185,129,0.12),
+                    0 4px 12px rgba(0,0,0,0.35);
+    }
+
+    /* ============================================================
+       COPY BUTTON — appears on card hover
+       ============================================================ */
+    .copy-btn {
+      opacity:       0;
+      transition:    opacity 0.18s, background 0.15s, color 0.15s;
+      background:    var(--surface-hover);
+      border:        1px solid var(--border);
+      border-radius: 7px;
+      padding:       0.22rem 0.5rem;
+      font-size:     0.68rem;
+      font-weight:   500;
+      color:         var(--text-muted);
+      cursor:        pointer;
+      white-space:   nowrap;
+      flex-shrink:   0;
+      position:      relative;
+      z-index:       2;
+    }
+    .link-card:hover .copy-btn { opacity: 1; }
+    .copy-btn:hover {
+      background:   rgba(168,85,247,0.12);
+      color:        #a855f7;
+      border-color: rgba(168,85,247,0.3);
+    }
+
+    /* ============================================================
+       DARK/LIGHT TOGGLE SWITCH
+       ============================================================ */
+    .theme-toggle {
+      width:      40px;
+      height:     22px;
+      background: var(--surface-card);
+      border:     1px solid var(--border);
+      border-radius: 99px;
+      position:   relative;
+      cursor:     pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .theme-toggle::after {
+      content:   '';
+      position:  absolute;
+      top:       3px;
+      left:      3px;
+      width:     14px;
+      height:    14px;
+      background: var(--accent);
+      border-radius: 50%;
+      transition: transform 0.22s cubic-bezier(0.4,0,0.2,1);
+    }
+    html.light .theme-toggle::after { transform: translateX(18px); }
+
+    /* ============================================================
+       TOAST NOTIFICATION
+       ============================================================ */
+    #toast {
+      position:   fixed;
+      bottom:     1.5rem;
+      right:      1.5rem;
+      z-index:    9999;
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      color:      #fff;
+      padding:    0.6rem 1.2rem;
+      border-radius: 10px;
+      font-size:  0.85rem;
+      font-weight: 600;
+      box-shadow: 0 4px 24px rgba(168,85,247,0.45);
+      pointer-events: none;
+      opacity:    0;
+      transform:  translateY(12px);
+      transition: opacity 0.28s cubic-bezier(0.4,0,0.2,1),
+                  transform 0.28s cubic-bezier(0.4,0,0.2,1);
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ============================================================
+       CREDIT BANNER
+       ============================================================ */
+    .credit-banner {
+      background:    linear-gradient(135deg, rgba(168,85,247,0.07), rgba(99,102,241,0.07));
+      border:        1px solid rgba(168,85,247,0.18);
+      border-radius: 12px;
+      padding:       0.65rem 1.1rem;
+      font-size:     0.8rem;
+      color:         var(--text-secondary);
+      line-height:   1.6;
+    }
+    .credit-banner a {
+      color: #a855f7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .credit-banner a:hover { text-decoration: underline; }
+
+    /* ============================================================
+       STATS CHIPS
+       ============================================================ */
+    .stat-chip {
+      display:     inline-flex;
+      align-items: center;
+      gap:         0.3rem;
+      background:  var(--surface-card);
+      border:      1px solid var(--border);
+      border-radius: 99px;
+      padding:     0.22rem 0.72rem;
+      font-size:   0.72rem;
+      font-weight: 600;
+      color:       var(--text-muted);
+    }
+    .stat-chip kbd {
+      background:  var(--surface-hover);
+      border:      1px solid var(--border);
+      border-radius: 4px;
+      padding:     0 0.3rem;
+      font-size:   0.65rem;
+      font-family: inherit;
+    }
+
+    /* ============================================================
+       BACK TO TOP FAB
+       ============================================================ */
+    #back-to-top {
+      position:      fixed;
+      bottom:        5.5rem;
+      right:         1.5rem;
+      z-index:       9990;
+      width:         38px;
+      height:        38px;
+      background:    linear-gradient(135deg, #a855f7, #6366f1);
+      color:         #fff;
+      border:        none;
+      border-radius: 50%;
+      font-size:     1.05rem;
+      line-height:   1;
+      cursor:        pointer;
+      opacity:       0;
+      transform:     translateY(10px);
+      transition:    opacity 0.25s, transform 0.25s;
+      box-shadow:    0 4px 18px rgba(168,85,247,0.35);
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); }
+    #back-to-top:hover   { transform: translateY(-2px) !important; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer-link { color: #a855f7; text-decoration: none; font-weight: 500; }
+    .footer-link:hover { text-decoration: underline; }
+
+    /* ============================================================
+       ANIMATIONS
+       ============================================================ */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+    .anim-in { animation: fadeSlideUp 0.45s ease-out both; }
+
+    /* ============================================================
+       MISC HELPERS
+       ============================================================ */
+    .card-title-link {
+      color:       var(--text-primary);
+      font-weight: 600;
+      font-size:   0.875rem;
+      line-height: 1.3;
+      text-decoration: none;
+      transition: color 0.15s;
+      display: block;
+    }
+    .card-desc {
+      color:     var(--text-muted);
+      font-size: 0.72rem;
+      margin-top: 0.18rem;
+      line-height: 1.4;
+      white-space:   nowrap;
+      overflow:      hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* NEW badge on link cards */
+    .card-new-badge {
+      display:       inline-block;
+      background:    linear-gradient(135deg, #a855f7, #6366f1);
+      color:         #fff;
+      border-radius: 5px;
+      padding:       0.05rem 0.38rem;
+      font-size:     0.6rem;
+      font-weight:   800;
+      letter-spacing:0.04em;
+      vertical-align: middle;
+      margin-left:   0.25rem;
+      line-height:   1.5;
+    }
+
+    /* External link arrow on card titles */
+    .card-ext-arrow {
+      font-size:   0.65rem;
+      opacity:     0;
+      transition:  opacity 0.18s;
+      flex-shrink: 0;
+      margin-left: 0.15rem;
+      color:       var(--text-muted);
+    }
+    .link-card:hover .card-ext-arrow { opacity: 0.6; }
+
+    /* Touch devices: copy button always visible */
+    @media (hover: none) and (pointer: coarse) {
+      .copy-btn { opacity: 1; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       STICKY HEADER
+       ============================================================ -->
+  <header id="site-header">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+
+      <!-- Row 1: Logo + Title + Theme Toggle -->
+      <div class="flex items-center gap-3 mb-2.5">
+
+        <!-- ✏️ LOGO: Replace with <img> tag if you have a logo image -->
+        <div id="logo-slot" class="text-3xl leading-none select-none flex-shrink-0">🔗</div>
+
+        <!-- Community name + tagline -->
+        <div class="flex-1 min-w-0">
+          <h1 id="site-title" class="text-lg font-extrabold leading-tight gradient-text truncate">
+            [Your Community] Hub
+          </h1>
+          <p id="site-tagline" class="text-xs leading-tight truncate" style="color:var(--text-muted)">
+            All-in-One Links for [Your Community]
+          </p>
+        </div>
+
+        <!-- Theme toggle + label -->
+        <div class="flex items-center gap-2">
+          <span id="theme-icon" class="text-sm hidden sm:inline" style="color:var(--text-muted)">🌙</span>
+          <div
+            id="theme-toggle"
+            class="theme-toggle"
+            role="button"
+            tabindex="0"
+            title="Toggle dark / light mode"
+            aria-label="Toggle dark / light mode"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Row 2: Search bar -->
+      <div class="relative">
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-base pointer-events-none"
+              style="color:var(--text-muted)">🔍</span>
+        <input
+          id="search-input"
+          type="search"
+          class="search-input pl-9 pr-20 py-2.5 text-sm"
+          placeholder="Search links… (Ctrl K)"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Search links"
+        />
+        <span id="search-count"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-xs pointer-events-none select-none hidden"
+              style="color:var(--text-muted)"></span>
+      </div>
+    </div>
+
+    <!-- Category Pills row -->
+    <div class="max-w-7xl mx-auto px-4 pb-3">
+      <div id="cat-pills" class="flex gap-2 overflow-x-auto no-scrollbar pb-0.5">
+        <button class="cat-pill active" data-target="all">✦ All</button>
+        <!-- Additional pills injected by JS -->
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       CREDIT BANNER — attribution for Frank White + plstart.me
+       ============================================================ -->
+  <div class="max-w-7xl mx-auto px-4 pt-5 relative z-10">
+    <div class="credit-banner text-center">
+      🔗 Hub template <strong>created by</strong>
+      <a href="https://x.com/WhankFrite" target="_blank" rel="noopener noreferrer">Frank White (@WhankFrite)</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/0xWhankFrite" target="_blank" rel="noopener noreferrer">0xWhankFrite on GitHub</a>
+      &nbsp;·&nbsp;
+      Inspired by &amp; based on <a href="https://plstart.me" target="_blank" rel="noopener noreferrer">plstart.me</a>
+      — full credit &amp; huge thanks to the original
+      <a href="https://plstart.me" target="_blank" rel="noopener noreferrer">plstart.me</a> developer. 🙏
+    </div>
+
+    <!-- Stats strip -->
+    <div id="stats-bar" class="mt-3 flex items-center justify-center gap-4 flex-wrap">
+      <span class="stat-chip" id="stat-categories"></span>
+      <span style="color:var(--text-muted);font-size:0.7rem">·</span>
+      <span class="stat-chip" id="stat-links"></span>
+      <span style="color:var(--text-muted);font-size:0.7rem">·</span>
+      <span class="stat-chip">⌨️ <kbd>Ctrl K</kbd> to search &nbsp;·&nbsp; <kbd>Esc</kbd> to clear</span>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       MAIN CONTENT — sections injected by JS
+       ============================================================ -->
+  <main id="main-content" class="max-w-7xl mx-auto px-4 py-8 space-y-14 relative z-10">
+    <!-- Populated by renderSections() -->
+  </main>
+
+
+  <!-- No-results state -->
+  <div id="no-results" class="hidden max-w-7xl mx-auto px-4 text-center py-16 relative z-10">
+    <div class="text-5xl mb-4">🔍</div>
+    <p class="text-lg font-semibold mb-1" style="color:var(--text-secondary)">No results for <span id="no-results-term"></span></p>
+    <p class="text-sm mb-4" style="color:var(--text-muted)">Try a different keyword, or press <kbd style="background:var(--surface-card);border:1px solid var(--border);border-radius:4px;padding:0.1rem 0.4rem;font-size:0.75rem">Esc</kbd> to clear</p>
+  </div>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="relative z-10 mt-16 border-t" style="border-color:var(--border)">
+    <div class="max-w-7xl mx-auto px-4 py-12 text-center space-y-3">
+
+      <!-- Brand -->
+      <div class="gradient-text text-xl font-extrabold" id="footer-title">[Your Community] Hub</div>
+
+      <!-- Attribution — DO NOT REMOVE -->
+      <p class="text-xs max-w-2xl mx-auto" style="color:var(--text-muted); line-height:2">
+        Hub template created by
+        <a href="https://x.com/WhankFrite" target="_blank" rel="noopener noreferrer" class="footer-link">Frank White (@WhankFrite)</a>
+        &nbsp;·&nbsp;
+        <a href="https://github.com/0xWhankFrite" target="_blank" rel="noopener noreferrer" class="footer-link">0xWhankFrite on GitHub</a>
+        <br/>
+        Inspired by &amp; based on
+        <a href="https://plstart.me" target="_blank" rel="noopener noreferrer" class="footer-link">plstart.me</a>
+        — full credit &amp; huge thanks to the original plstart.me developer. 🙏
+      </p>
+
+      <!-- Customization note -->
+      <p class="text-xs" style="color:var(--text-muted)">
+        Made for <strong id="footer-community"></strong>
+        &nbsp;·&nbsp; Fully open-source &amp; free to customize
+        &nbsp;·&nbsp;
+        <a id="footer-github" href="#" class="footer-link" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+      </p>
+
+      <!-- Social links for Frank White -->
+      <div class="flex items-center justify-center gap-4 pt-1">
+        <a href="https://x.com/WhankFrite" target="_blank" rel="noopener noreferrer"
+           class="footer-link text-xs flex items-center gap-1">🐦 @WhankFrite</a>
+        <span style="color:var(--text-muted);font-size:0.7rem">·</span>
+        <a href="https://github.com/0xWhankFrite" target="_blank" rel="noopener noreferrer"
+           class="footer-link text-xs flex items-center gap-1">🐙 0xWhankFrite</a>
+        <span style="color:var(--text-muted);font-size:0.7rem">·</span>
+        <a href="https://plstart.me" target="_blank" rel="noopener noreferrer"
+           class="footer-link text-xs flex items-center gap-1">🔗 plstart.me</a>
+      </div>
+
+      <!-- Deploy note -->
+      <p class="text-xs pt-1" style="color:var(--text-muted); opacity:0.45">
+        Built with ❤️ using Tailwind CSS &nbsp;·&nbsp;
+        Deploy anywhere: Vercel · Netlify · GitHub Pages · IPFS
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- Back to top FAB -->
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+
+  <!-- Toast notification -->
+  <div id="toast" role="status" aria-live="polite">✓ Link copied!</div>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+
+    /* ============================================================
+       ✏️  STEP 1 — CONFIGURATION
+           Change these values to customise the hub for your community.
+       ============================================================ */
+    const CONFIG = {
+      communityName : "[Your Community]",       // ✏️  e.g. "PulseChain"
+      tagline       : "All-in-One Links for [Your Community]",  // ✏️  header subtitle
+      logoEmoji     : "🔗",                     // ✏️  emoji logo — or use logoImage below
+      logoImage     : "",                        // ✏️  optional image URL: "https://…/logo.png"
+      githubUrl     : "https://github.com/yourusername/your-repo",  // ✏️ your repo
+    };
+
+
+    /* ============================================================
+       ✏️  STEP 2 — LINK DATA
+           Edit or add categories and links here.
+           Each category:  { id, name, icon, color, links[] }
+           Each link:      { icon, title, desc, url }
+           color options:   "purple" | "blue" | "green"
+       ============================================================ */
+    const CATEGORIES = [
+
+      // ── General ─────────────────────────────────────────────
+      {
+        id    : "general",
+        name  : "General",
+        icon  : "🌐",
+        color : "purple",
+        links : [
+          { icon:"🌍", title:"Official Website",  desc:"Main community hub and landing page",          url:"https://yourcommunity.com" },
+          { icon:"📖", title:"Documentation",     desc:"Official docs, guides, and tutorials",          url:"https://docs.yourcommunity.com" },
+          { icon:"📝", title:"Blog",              desc:"Latest articles and community updates",          url:"https://blog.yourcommunity.com" },
+          { icon:"📬", title:"Newsletter",        desc:"Subscribe for weekly community updates",         url:"https://newsletter.yourcommunity.com" },
+          { icon:"🗺️", title:"Roadmap",           desc:"Planned features and project milestones",       url:"https://yourcommunity.com/roadmap" },
+        ]
+      },
+
+      // ── Socials ─────────────────────────────────────────────
+      {
+        id    : "socials",
+        name  : "Socials",
+        icon  : "💬",
+        color : "blue",
+        links : [
+          { icon:"💬", title:"Discord",     desc:"Join the main community server",                 url:"https://discord.gg/yourcommunity" },
+          { icon:"✈️", title:"Telegram",   desc:"Official Telegram group and announcements",       url:"https://t.me/yourcommunity" },
+          { icon:"🐦", title:"X / Twitter",desc:"Follow us for live updates and news",             url:"https://x.com/yourcommunity" },
+          { icon:"🔴", title:"Reddit",     desc:"Community discussions and AMA sessions",          url:"https://reddit.com/r/yourcommunity" },
+          { icon:"▶️", title:"YouTube",   desc:"Educational videos and tutorials",                 url:"https://youtube.com/@yourcommunity" },
+          { icon:"💼", title:"LinkedIn",   desc:"Professional updates and announcements",           url:"https://linkedin.com/company/yourcommunity" },
+        ]
+      },
+
+      // ── Tools & Analytics ───────────────────────────────────
+      {
+        id    : "tools",
+        name  : "Tools & Analytics",
+        icon  : "🔧",
+        color : "green",
+        links : [
+          { icon:"🔍", title:"Block Explorer",       desc:"Explore blocks, transactions, and addresses", url:"https://explorer.yourcommunity.com" },
+          { icon:"📊", title:"Analytics Dashboard",  desc:"Real-time on-chain stats and charts",         url:"https://stats.yourcommunity.com" },
+          { icon:"🏆", title:"Dune Analytics",       desc:"Community dashboards on Dune",                url:"https://dune.com/yourcommunity" },
+          { icon:"⚡", title:"Gas Tracker",          desc:"Live network gas price tracker",              url:"https://gas.yourcommunity.com" },
+          { icon:"📈", title:"DeFiLlama",            desc:"TVL and protocol data",                       url:"https://defillama.com/chain/YourCommunity" },
+          { icon:"🎯", title:"Token Terminal",       desc:"Revenue and fundamentals tracker",            url:"https://tokenterminal.com" },
+        ]
+      },
+
+      // ── DeFi & Apps ─────────────────────────────────────────
+      {
+        id    : "defi",
+        name  : "DeFi & Apps",
+        icon  : "💰",
+        color : "purple",
+        links : [
+          { icon:"🔄", title:"Flagship DEX",      desc:"Swap tokens on the main DEX",                    url:"https://dex.yourcommunity.com" },
+          { icon:"🏦", title:"Lending Protocol",  desc:"Lend and borrow with crypto assets",             url:"https://lend.yourcommunity.com" },
+          { icon:"🌾", title:"Yield Farming",     desc:"Farm yields with your liquidity positions",       url:"https://farm.yourcommunity.com" },
+          { icon:"🥩", title:"Staking",           desc:"Stake tokens and earn protocol rewards",          url:"https://stake.yourcommunity.com" },
+          { icon:"🎯", title:"Launchpad",         desc:"New project launches and IDOs",                  url:"https://launch.yourcommunity.com" },
+          { icon:"💎", title:"Portfolio Tracker", desc:"Track your full portfolio in one place",          url:"https://portfolio.yourcommunity.com" },
+        ]
+      },
+
+      // ── News & Media ─────────────────────────────────────────
+      {
+        id    : "news",
+        name  : "News & Media",
+        icon  : "📰",
+        color : "blue",
+        links : [
+          { icon:"📝", title:"Medium",          desc:"In-depth articles and analyses",               url:"https://medium.com/@yourcommunity" },
+          { icon:"📮", title:"Substack",        desc:"Weekly community breakdowns",                  url:"https://yourcommunity.substack.com" },
+          { icon:"🎙️", title:"Podcast",         desc:"Listen to the community podcast",              url:"https://podcast.yourcommunity.com" },
+          { icon:"📡", title:"Announcements",   desc:"Official team announcements channel",           url:"https://t.me/yourcommunity_ann" },
+          { icon:"🗞️", title:"Press Coverage",  desc:"Media mentions and press articles",            url:"https://yourcommunity.com/press" },
+        ]
+      },
+
+      // ── Bridges & Cross-Chain ────────────────────────────────
+      {
+        id    : "bridges",
+        name  : "Bridges & Cross-Chain",
+        icon  : "🌉",
+        color : "green",
+        links : [
+          { icon:"🌉", title:"Official Bridge",    desc:"Bridge assets to and from other chains",    url:"https://bridge.yourcommunity.com" },
+          { icon:"🔁", title:"Cross-Chain Swap",   desc:"Swap tokens across multiple chains",        url:"https://crosschain.yourcommunity.com" },
+          { icon:"⚓", title:"LayerZero",           desc:"Omnichain bridging via LayerZero",          url:"https://layerzero.network" },
+          { icon:"🌀", title:"Wormhole",            desc:"Fast cross-chain transfers via Wormhole",   url:"https://wormhole.com" },
+          { icon:"🦅", title:"deBridge",            desc:"High-speed cross-chain bridge protocol",   url:"https://debridge.finance" },
+        ]
+      },
+
+      // ── NFTs & Collectibles ──────────────────────────────────
+      {
+        id    : "nfts",
+        name  : "NFTs & Collectibles",
+        icon  : "🎨",
+        color : "purple",
+        links : [
+          { icon:"🖼️", title:"NFT Marketplace",    desc:"Buy, sell, and trade community NFTs",        url:"https://nft.yourcommunity.com" },
+          { icon:"🏅", title:"Official Collection", desc:"The official community NFT collection",      url:"https://nft.yourcommunity.com/collection" },
+          { icon:"🎰", title:"NFT Rarity",          desc:"Check the rarity score of your NFTs",        url:"https://rarity.tools/yourcommunity" },
+          { icon:"🛒", title:"OpenSea",             desc:"Trade community NFTs on OpenSea",            url:"https://opensea.io/collection/yourcommunity" },
+          { icon:"🔮", title:"Blur",                desc:"Trade community NFTs on Blur",               url:"https://blur.io/collection/yourcommunity" },
+        ]
+      },
+
+      // ── Developers ──────────────────────────────────────────
+      {
+        id    : "dev",
+        name  : "Developers",
+        icon  : "👨‍💻",
+        color : "green",
+        links : [
+          { icon:"🐙", title:"GitHub",          desc:"Source code and open-source repositories",  url:"https://github.com/yourcommunity" },
+          { icon:"📋", title:"Developer Docs",  desc:"API references and integration guides",     url:"https://dev.yourcommunity.com" },
+          { icon:"🧪", title:"Testnet Faucet",  desc:"Get free testnet tokens for development",   url:"https://faucet.yourcommunity.com" },
+          { icon:"🏗️", title:"Builder Grants",  desc:"Apply for ecosystem grants and funding",    url:"https://grants.yourcommunity.com" },
+          { icon:"🔌", title:"SDK / npm",       desc:"Official SDKs and npm packages",            url:"https://npmjs.com/org/yourcommunity" },
+          { icon:"💬", title:"Dev Discord",     desc:"Developer support and discussions",         url:"https://discord.gg/yourcommunity-dev" },
+        ]
+      },
+
+    ]; // ← end CATEGORIES
+
+
+    /* ============================================================
+       ACCENT COLOR MAPS — controls icon bg, badge, and hover glow
+       ============================================================ */
+    const COLORS = {
+      purple : { text:"#a855f7", bg:"rgba(168,85,247,0.1)",  border:"rgba(168,85,247,0.22)", badge:"rgba(168,85,247,0.14)" },
+      blue   : { text:"#6366f1", bg:"rgba(99,102,241,0.1)",  border:"rgba(99,102,241,0.22)",  badge:"rgba(99,102,241,0.14)"  },
+      green  : { text:"#10b981", bg:"rgba(16,185,129,0.1)",  border:"rgba(16,185,129,0.2)",   badge:"rgba(16,185,129,0.12)"  },
+    };
+
+
+    /* ============================================================
+       APPLY CONFIG — hydrate the static HTML placeholders
+       ============================================================ */
+    function applyConfig() {
+      const name = CONFIG.communityName;
+
+      document.getElementById('site-title').textContent    = name + ' Hub';
+      document.getElementById('site-tagline').textContent  = CONFIG.tagline;
+      document.getElementById('footer-title').textContent  = name + ' Hub';
+      document.getElementById('footer-community').textContent = name;
+      document.getElementById('footer-github').href        = CONFIG.githubUrl;
+      document.title = name + ' Hub';
+
+      if (CONFIG.logoImage) {
+        document.getElementById('logo-slot').innerHTML =
+          `<img src="${CONFIG.logoImage}" alt="${name} logo" class="w-10 h-10 rounded-xl object-cover" />`;
+      } else {
+        document.getElementById('logo-slot').textContent = CONFIG.logoEmoji;
+      }
+    }
+
+
+    /* ============================================================
+       RENDER CATEGORY PILLS
+       ============================================================ */
+    function renderPills() {
+      const container = document.getElementById('cat-pills');
+      CATEGORIES.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className        = 'cat-pill';
+        btn.dataset.target   = cat.id;
+        btn.textContent      = cat.icon + ' ' + cat.name;
+        btn.addEventListener('click', () => scrollToSection(cat.id, btn));
+        container.appendChild(btn);
+      });
+    }
+
+
+    /* ============================================================
+       RENDER ALL SECTIONS & CARDS
+       ============================================================ */
+    function renderSections() {
+      const main = document.getElementById('main-content');
+
+      CATEGORIES.forEach((cat, ci) => {
+        const c = COLORS[cat.color] || COLORS.purple;
+
+        /* ── Section wrapper ────────────────────────────── */
+        const section = document.createElement('section');
+        section.id             = `section-${cat.id}`;
+        section.dataset.catId  = cat.id;
+        section.className      = 'anim-in';
+        section.style.animationDelay = `${ci * 0.06}s`;
+
+        /* ── Section heading ────────────────────────────── */
+        const heading = document.createElement('div');
+        heading.className = 'flex items-center gap-3 mb-4';
+        heading.innerHTML = `
+          <span style="
+            background:${c.bg}; color:${c.text};
+            border:1px solid ${c.border};
+            border-radius:9px;
+            padding:0.28rem 0.7rem;
+            font-size:0.78rem; font-weight:700;
+            letter-spacing:0.03em;
+            display:inline-flex; align-items:center; gap:0.35rem;
+            white-space:nowrap;
+          ">${cat.icon} ${cat.name}</span>
+          <div class="section-divider"></div>
+          <span class="link-count-badge" style="
+            background:${c.badge}; color:${c.text};
+            border-radius:99px;
+            padding:0.1rem 0.55rem;
+            font-size:0.68rem; font-weight:700;
+          ">${cat.links.length}</span>
+        `;
+        section.appendChild(heading);
+
+        /* ── Links grid ─────────────────────────────────── */
+        const grid = document.createElement('div');
+        grid.className = 'grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+
+        cat.links.forEach((link, li) => {
+          const card = document.createElement('div');
+          card.className          = 'link-card anim-in';
+          card.dataset.color      = cat.color;
+          card.dataset.searchTitle = link.title.toLowerCase();
+          card.dataset.searchDesc  = link.desc.toLowerCase();
+          card.dataset.catId       = cat.id;
+          card.style.animationDelay = `${ci * 0.06 + li * 0.035}s`;
+          card.setAttribute('role', 'button');
+          card.setAttribute('tabindex', '0');
+          card.setAttribute('aria-label', `Open ${link.title}`);
+
+          /* Icon box */
+          const iconBox = document.createElement('div');
+          iconBox.style.cssText = `
+            width:36px; height:36px;
+            background:${c.bg}; border:1px solid ${c.border};
+            border-radius:10px;
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.1rem; flex-shrink:0;
+          `;
+          iconBox.textContent = link.icon;
+
+          /* Text block */
+          const textBlock = document.createElement('div');
+          textBlock.style.cssText = 'flex:1; min-width:0;';
+
+          const titleRow = document.createElement('div');
+          titleRow.style.cssText = 'display:flex; align-items:flex-start; justify-content:space-between; gap:0.4rem;';
+
+          const titleLink = document.createElement('a');
+          titleLink.href      = link.url;
+          titleLink.target    = '_blank';
+          titleLink.rel       = 'noopener noreferrer';
+          titleLink.className = 'card-title-link';
+          titleLink.style.cssText = 'display:flex;align-items:center;gap:0;';
+          titleLink.addEventListener('mouseover', () => titleLink.style.color = c.text);
+          titleLink.addEventListener('mouseout',  () => titleLink.style.color = '');
+
+          const titleText = document.createElement('span');
+          titleText.textContent = link.title;
+          titleLink.appendChild(titleText);
+
+          if (link.isNew) {
+            const badge = document.createElement('span');
+            badge.className   = 'card-new-badge';
+            badge.textContent = 'NEW';
+            titleLink.appendChild(badge);
+          }
+
+          const extArrow = document.createElement('span');
+          extArrow.className   = 'card-ext-arrow';
+          extArrow.textContent = ' ↗';
+          extArrow.setAttribute('aria-hidden', 'true');
+          titleLink.appendChild(extArrow);
+
+          const copyBtn = document.createElement('button');
+          copyBtn.className   = 'copy-btn';
+          copyBtn.textContent = 'copy';
+          copyBtn.title       = 'Copy link';
+          copyBtn.setAttribute('aria-label', `Copy link for ${link.title}`);
+          copyBtn.addEventListener('click', e => { e.stopPropagation(); copyLink(link.url); });
+
+          titleRow.appendChild(titleLink);
+          titleRow.appendChild(copyBtn);
+
+          const desc = document.createElement('p');
+          desc.className   = 'card-desc';
+          desc.textContent = link.desc;
+
+          textBlock.appendChild(titleRow);
+          textBlock.appendChild(desc);
+
+          /* Assemble card */
+          const inner = document.createElement('div');
+          inner.style.cssText = 'display:flex; align-items:flex-start; gap:0.75rem;';
+          inner.appendChild(iconBox);
+          inner.appendChild(textBlock);
+          card.appendChild(inner);
+
+          /* Whole-card click (excluding copy button) */
+          card.addEventListener('click', e => {
+            if (e.target === copyBtn || e.target.closest('.copy-btn')) return;
+            window.open(link.url, '_blank', 'noopener,noreferrer');
+          });
+          card.addEventListener('keydown', e => {
+            if ((e.key === 'Enter' || e.key === ' ') && e.target === card) {
+              e.preventDefault();
+              window.open(link.url, '_blank', 'noopener,noreferrer');
+            }
+          });
+
+          grid.appendChild(card);
+        });
+
+        section.appendChild(grid);
+        main.appendChild(section);
+      });
+    }
+
+
+    /* ============================================================
+       REAL-TIME SEARCH
+       ============================================================ */
+    let searchTimer;
+
+    document.getElementById('search-input').addEventListener('input', function () {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => doSearch(this.value.trim()), 55);
+    });
+
+    // Ctrl+K / Cmd+K / '/' → focus search; ESC → clear & blur
+    document.addEventListener('keydown', e => {
+      const si = document.getElementById('search-input');
+      if ((e.key === 'k' && (e.ctrlKey || e.metaKey)) || e.key === '/') {
+        if (document.activeElement !== si) {
+          e.preventDefault();
+          si.focus();
+          si.select();
+        }
+      }
+      if (e.key === 'Escape') {
+        if (document.activeElement === si || si.value) {
+          si.value = '';
+          si.blur();
+          doSearch('');
+        }
+      }
+    });
+
+    function doSearch(rawQuery) {
+      const q          = rawQuery.toLowerCase().replace(/[^\w\s]/g, '');
+      const countEl    = document.getElementById('search-count');
+      const noResults  = document.getElementById('no-results');
+      let   totalShown = 0;
+
+      CATEGORIES.forEach(cat => {
+        const section = document.getElementById(`section-${cat.id}`);
+        if (!section) return;
+        const cards   = section.querySelectorAll('.link-card');
+        const badge   = section.querySelector('.link-count-badge');
+        let   visible = 0;
+
+        cards.forEach(card => {
+          const catName  = cat.name.toLowerCase();
+          const t        = card.dataset.searchTitle || '';
+          const d        = card.dataset.searchDesc  || '';
+          const matches  = !q || t.includes(q) || d.includes(q) || catName.includes(q);
+          card.style.display = matches ? '' : 'none';
+          if (matches) { visible++; totalShown++; }
+        });
+
+        section.style.display = (!q || visible > 0) ? '' : 'none';
+        if (badge) badge.textContent = q ? visible : cat.links.length;
+      });
+
+      if (q) {
+        countEl.textContent = `${totalShown} result${totalShown !== 1 ? 's' : ''}`;
+        countEl.classList.remove('hidden');
+        noResults.classList.toggle('hidden', totalShown > 0);
+        // Show search term in no-results state
+        const nrTerm = document.getElementById('no-results-term');
+        if (nrTerm) nrTerm.textContent = `"${rawQuery}"`;
+      } else {
+        countEl.classList.add('hidden');
+        noResults.classList.add('hidden');
+      }
+    }
+
+
+    /* ============================================================
+       CATEGORY PILL → SCROLL TO SECTION
+       ============================================================ */
+    function setActivePill(target) {
+      document.querySelectorAll('.cat-pill').forEach(p =>
+        p.classList.toggle('active', p.dataset.target === target)
+      );
+    }
+
+    function scrollToSection(id, btn) {
+      setActivePill(id);
+      const section      = document.getElementById(`section-${id}`);
+      const headerHeight = document.getElementById('site-header').offsetHeight;
+      if (section) {
+        const y = section.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+
+    // "All" pill — scroll to top
+    document.querySelector('[data-target="all"]').addEventListener('click', function () {
+      setActivePill('all');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+
+    /* ============================================================
+       SCROLL SPY — highlights correct pill as user scrolls
+       ============================================================ */
+    let rafId;
+    window.addEventListener('scroll', () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateScrollSpy);
+    }, { passive: true });
+
+    function updateScrollSpy() {
+      const headerH = document.getElementById('site-header').offsetHeight;
+      let current   = null;
+
+      CATEGORIES.forEach(cat => {
+        const section = document.getElementById(`section-${cat.id}`);
+        if (section && section.getBoundingClientRect().top <= headerH + 48) {
+          current = cat.id;
+        }
+      });
+
+      // If nothing is past the fold, activate "All"
+      setActivePill(current || 'all');
+    }
+
+
+    /* ============================================================
+       COPY LINK TO CLIPBOARD
+       ============================================================ */
+    function copyLink(url) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url)
+          .then(() => showToast('✓ Link copied!'))
+          .catch(() => fallbackCopy(url));
+      } else {
+        fallbackCopy(url);
+      }
+    }
+
+    function fallbackCopy(url) {
+      const ta = document.createElement('textarea');
+      ta.value          = url;
+      ta.style.cssText  = 'position:fixed;opacity:0;top:-9999px;left:-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('✓ Link copied!');
+      } catch {
+        showToast('⚠ Copy not supported');
+      }
+      document.body.removeChild(ta);
+    }
+
+
+    /* ============================================================
+       TOAST NOTIFICATION
+       ============================================================ */
+    let toastTimer;
+
+    function showToast(msg) {
+      const toast       = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2300);
+    }
+
+
+    /* ============================================================
+       BACK TO TOP FAB
+       ============================================================ */
+    const bttBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      bttBtn.classList.toggle('visible', window.scrollY > 350);
+    }, { passive: true });
+    bttBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+
+    /* ============================================================
+       DARK / LIGHT MODE TOGGLE
+       ============================================================ */
+    const htmlEl       = document.documentElement;
+    const themeToggle  = document.getElementById('theme-toggle');
+    const themeIcon    = document.getElementById('theme-icon');
+    const metaTheme    = document.querySelector('meta[name="theme-color"]');
+
+    function setTheme(dark) {
+      htmlEl.classList.toggle('dark', dark);
+      htmlEl.classList.toggle('light', !dark);
+      themeIcon.textContent = dark ? '🌙' : '☀️';
+      if (metaTheme) metaTheme.content = dark ? '#07070f' : '#f0f2fd';
+      localStorage.setItem('hub-theme', dark ? 'dark' : 'light');
+    }
+
+    // Load persisted preference; default = dark
+    const savedTheme = localStorage.getItem('hub-theme');
+    setTheme(savedTheme !== 'light');
+
+    themeToggle.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark')));
+    themeToggle.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); themeToggle.click(); }
+    });
+
+
+    /* ============================================================
+       INIT — run everything
+       ============================================================ */
+    applyConfig();
+    renderPills();
+    renderSections();
+
+    // Populate stats bar
+    const totalLinks = CATEGORIES.reduce((sum, c) => sum + c.links.length, 0);
+    const elCats     = document.getElementById('stat-categories');
+    const elLinks    = document.getElementById('stat-links');
+    if (elCats)  elCats.textContent  = `📂 ${CATEGORIES.length} categories`;
+    if (elLinks) elLinks.textContent = `🔗 ${totalLinks} links`;
+
+  </script>
+</body>
+</html>
