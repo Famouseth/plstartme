@@ -6,15 +6,13 @@
        ============================================================ -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="[Your Community] Hub – Your all-in-one community link directory. Find every important link in one place." />
+  <meta name="description" content="PulseChain Hub – All-in-One PulseChain link directory. Every DEX, bridge, tool, wallet, and community link in one place. Inspired by plstart.me by @WhankFrite." />
   <meta name="theme-color" content="#07070f" />
-  <meta property="og:title" content="[Your Community] Hub" />
-  <meta property="og:description" content="All-in-One Links for [Your Community]. Find everything in one place." />
+  <meta property="og:title" content="PulseChain Hub — Inspired by plstart.me" />
+  <meta property="og:description" content="Every PulseChain DEX, bridge, tool, wallet, and community link in one place. Based on plstart.me by @WhankFrite." />
   <meta property="og:type" content="website" />
-  <!-- ✏️ FAVICON — swap emoji for an <img> or .ico if you have one -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>" />
-  <!-- ✏️ PAGE TITLE — set automatically from CONFIG below -->
-  <title>[Your Community] Hub</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💜</text></svg>" />
+  <title>PulseChain Hub — Inspired by plstart.me</title>
 
   <!-- Tailwind CSS Play CDN — no build step needed -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -465,10 +463,10 @@
         <!-- Community name + tagline -->
         <div class="flex-1 min-w-0">
           <h1 id="site-title" class="text-lg font-extrabold leading-tight gradient-text truncate">
-            [Your Community] Hub
+            PulseChain Hub
           </h1>
           <p id="site-tagline" class="text-xs leading-tight truncate" style="color:var(--text-muted)">
-            All-in-One Links for [Your Community]
+            All-in-One PulseChain Links — Inspired by <a href="https://plstart.me" target="_blank" rel="noopener noreferrer" style="color:#a855f7;font-weight:600">plstart.me</a>
           </p>
         </div>
 
@@ -624,17 +622,16 @@
            Change these values to customise the hub for your community.
        ============================================================ */
     const CONFIG = {
-      communityName : "[Your Community]",       // ✏️  e.g. "PulseChain"
-      tagline       : "All-in-One Links for [Your Community]",  // ✏️  header subtitle
-      logoEmoji     : "🔗",                     // ✏️  emoji logo — or use logoImage below
-      logoImage     : "",                        // ✏️  optional image URL: "https://…/logo.png"
-      githubUrl     : "https://github.com/yourusername/your-repo",  // ✏️ your repo
+      communityName : "PulseChain",
+      tagline       : "All-in-One PulseChain Links — Inspired by plstart.me",
+      logoEmoji     : "💜",
+      logoImage     : "",
+      githubUrl     : "https://github.com/Famouseth/plstartme",
     };
 
 
     /* ============================================================
-       ✏️  STEP 2 — LINK DATA
-           Edit or add categories and links here.
+       ✏️  STEP 2 — LINK DATA  (mirror of plstart.me by @WhankFrite)
            Each category:  { id, name, icon, color, links[] }
            Each link:      { icon, title, desc, url }
            color options:   "purple" | "blue" | "green"
@@ -648,120 +645,305 @@
         icon  : "🌐",
         color : "purple",
         links : [
-          { icon:"🌍", title:"Official Website",  desc:"Main community hub and landing page",          url:"https://yourcommunity.com" },
-          { icon:"📖", title:"Documentation",     desc:"Official docs, guides, and tutorials",          url:"https://docs.yourcommunity.com" },
-          { icon:"📝", title:"Blog",              desc:"Latest articles and community updates",          url:"https://blog.yourcommunity.com" },
-          { icon:"📬", title:"Newsletter",        desc:"Subscribe for weekly community updates",         url:"https://newsletter.yourcommunity.com" },
-          { icon:"🗺️", title:"Roadmap",           desc:"Planned features and project milestones",       url:"https://yourcommunity.com/roadmap" },
+          { icon:"💜", title:"PulseChain.com",  desc:"Official PulseChain website",                  url:"https://pulsechain.com/" },
+          { icon:"🐦", title:"X — @WhankFrite", desc:"Creator of plstart.me on X / Twitter",         url:"https://x.com/WhankFrite" },
+          { icon:"🐙", title:"GitHub",           desc:"0xWhankFrite on GitHub",                       url:"https://github.com/0xWhankFrite" },
+          { icon:"✈️", title:"Telegram",         desc:"plstart.me official Telegram",                 url:"https://t.me/plstartme" },
+          { icon:"✍️", title:"Publish0x",        desc:"Earn crypto for reading & writing articles",   url:"https://www.publish0x.com/?a=4QbY7yWnez" },
         ]
       },
 
-      // ── Socials ─────────────────────────────────────────────
+      // ── DEXes ───────────────────────────────────────────────
       {
-        id    : "socials",
-        name  : "Socials",
+        id    : "dexes",
+        name  : "Dexes",
+        icon  : "🔄",
+        color : "purple",
+        links : [
+          { icon:"⚡", title:"PulseX",     desc:"The flagship PulseChain DEX",                        url:"https://app.pulsex.com/" },
+          { icon:"🟣", title:"Phux",       desc:"Phux DEX on PulseChain",                             url:"https://phux.io/#/pulse/trade/0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE/0x2806F9d083BABbDbB9a92b0722F1b5D4E6FEF6cC" },
+          { icon:"🌊", title:"TIDE",       desc:"Next-gen DEX on PulseChain",                         url:"https://beta.0xtide.com/" },
+          { icon:"🏝️", title:"FiDex",      desc:"Function Island DEX",                                url:"https://dex.functionisland.com/" },
+          { icon:"🖥️", title:"Dextop",     desc:"Dextop DEX frontend",                               url:"https://dex.dextop.pro/" },
+        ]
+      },
+
+      // ── Bridge / Swap ────────────────────────────────────────
+      {
+        id    : "bridges",
+        name  : "Bridge / Swap",
+        icon  : "🌉",
+        color : "blue",
+        links : [
+          { icon:"🌉", title:"PulseChain Bridge", desc:"Official bridge — Ethereum ↔ PulseChain",    url:"https://bridge.pulsechain.com/" },
+          { icon:"🌐", title:"Hyperlane",          desc:"Cross-chain bridge via Hyperlane",           url:"https://nexus.hyperlane.xyz/?destination=pulsechain&token=0x32aB2fcCA30864027056a41B329e0195f2f7E250&origin=base" },
+          { icon:"⚡", title:"PulseLN",            desc:"Lightning-fast PulseChain bridge",           url:"https://app.pulseln.com/?ref=4k53P5OO445sNn31oQ4n41NP19153S724121Nr8193" },
+          { icon:"🗽", title:"Liberty Swap",       desc:"Cross-chain swap aggregator",                url:"https://libertyswap.finance/" },
+          { icon:"🎁", title:"Gibs.finance",       desc:"On-ramp & bridge to PulseChain",             url:"https://gibs.finance/#/onboard" },
+        ]
+      },
+
+      // ── On/Off Ramps ─────────────────────────────────────────
+      {
+        id    : "ramps",
+        name  : "On / Off Ramps",
+        icon  : "💱",
+        color : "green",
+        links : [
+          { icon:"🏖️", title:"Coast",         desc:"Fiat on-ramp to PulseChain",                     url:"https://0xcoast.com/" },
+          { icon:"⚡", title:"PulseLN",        desc:"Lightning-fast on/off ramp",                     url:"https://app.pulseln.com/?ref=4k53P5OO445sNn31oQ4n41NP19153S724121Nr8193" },
+          { icon:"🎁", title:"Gibs.finance",   desc:"Buy crypto and bridge to PulseChain",            url:"https://gibs.finance/#/onboard" },
+          { icon:"🔄", title:"ChangeNow",      desc:"Non-custodial crypto exchange",                  url:"https://changenow.app.link/referral?link_id=98bfff15956173" },
+        ]
+      },
+
+      // ── Aggregators ──────────────────────────────────────────
+      {
+        id    : "aggregators",
+        name  : "Aggregators",
+        icon  : "⚡",
+        color : "purple",
+        links : [
+          { icon:"🎯", title:"Piteas",          desc:"Best prices across PulseChain DEXes",           url:"https://app.piteas.io/" },
+          { icon:"🏆", title:"Switch.win",      desc:"Multi-chain DEX aggregator",                    url:"https://switch.win/dapp" },
+          { icon:"9️⃣", title:"9mm 9x",          desc:"9mm aggregator with 9x leverage",               url:"https://9x.9mm.pro/#/swap?chainId=369" },
+          { icon:"💧", title:"PulseSwap",       desc:"PulseChain DEX aggregator",                     url:"https://pulseswap.io/" },
+          { icon:"🦭", title:"Empseal",         desc:"Swap aggregator on PulseChain",                 url:"https://www.empseal.xyz/swap" },
+        ]
+      },
+
+      // ── Swap / LP Tools ──────────────────────────────────────
+      {
+        id    : "lp-tools",
+        name  : "Swap / LP Tools",
+        icon  : "🛠️",
+        color : "blue",
+        links : [
+          { icon:"🏆", title:"Swap.win",           desc:"Advanced swap tool — plstart.me partner",    url:"https://swap.win/plstart" },
+          { icon:"📊", title:"vfat",               desc:"LP position manager for PulseChain",         url:"https://vfat.io/pools?chains=369" },
+          { icon:"🔑", title:"LPX",                desc:"LP management by plusx.app",                 url:"https://lpx.plusx.app/" },
+          { icon:"🎯", title:"Sniper Swap",         desc:"Token sniper & trading tool",               url:"https://tokentrader.win/sniper-swap" },
+          { icon:"📡", title:"multicall.exchange",  desc:"Batch transactions in one call",            url:"https://multicall.exchange/" },
+        ]
+      },
+
+      // ── Dapps ────────────────────────────────────────────────
+      {
+        id    : "dapps",
+        name  : "Dapps",
+        icon  : "🚀",
+        color : "green",
+        links : [
+          { icon:"🏝️", title:"Function Island",  desc:"PulseChain DeFi suite",                        url:"https://functionisland.com/" },
+          { icon:"🧪", title:"Experiment0x",      desc:"Experimental PulseChain dapps",                url:"https://experiment0x.xyz/" },
+          { icon:"🎰", title:"Degen Protocol",    desc:"Degen DeFi protocol on PulseChain",            url:"https://degenprotocol.io/app" },
+          { icon:"⚙️", title:"BasicDefi",         desc:"Simple DeFi tools on PulseChain",              url:"https://pls.basic-defi.xyz/" },
+          { icon:"⏰", title:"xTIME Dapp",        desc:"xTIME app on PulseChain",                      url:"https://xtime-app.xyz/" },
+        ]
+      },
+
+      // ── Lending / Leverage ───────────────────────────────────
+      {
+        id    : "lending",
+        name  : "Lending / Leverage",
+        icon  : "🏦",
+        color : "purple",
+        links : [
+          { icon:"💧", title:"Phiat (AAVE fork)",      desc:"Lend & borrow on PulseChain",             url:"https://dapp.phiat.io/#/dashboard" },
+          { icon:"📈", title:"Phame (GMX fork)",       desc:"Perpetuals & leverage trading",           url:"https://phame.io/" },
+          { icon:"✨", title:"Nexion GLOW",             desc:"Gearbox fork — leveraged yield",          url:"https://nexionpulse.com/GLOW" },
+          { icon:"🤝", title:"Axel Lending (p2p)",     desc:"Peer-to-peer lending on PulseChain",      url:"https://lending.axel.win/" },
+        ]
+      },
+
+      // ── NFTs / Marketplaces ──────────────────────────────────
+      {
+        id    : "nfts",
+        name  : "NFTs / Marketplaces",
+        icon  : "🎨",
+        color : "blue",
+        links : [
+          { icon:"🛒", title:"PulseMarket",      desc:"PulseChain NFT marketplace",                    url:"https://pulsemarket.app/" },
+          { icon:"🧪", title:"Experiment0x",     desc:"NFTs & experimental dapps",                     url:"https://experiment0x.xyz/" },
+          { icon:"🎵", title:"Beatbox",          desc:"Music NFT marketplace on PulseChain",           url:"https://beatbox.market/" },
+          { icon:"💎", title:"TesseractX",       desc:"NFT marketplace — TesseractX",                  url:"https://tesseractx.com/?ref=QlrNjb" },
+          { icon:"🥩", title:"TheStakerClass",   desc:"Staker community NFT market",                   url:"https://thestakerclass.com/market" },
+        ]
+      },
+
+      // ── Block Explorers ──────────────────────────────────────
+      {
+        id    : "explorers",
+        name  : "Block Explorers",
+        icon  : "🔍",
+        color : "green",
+        links : [
+          { icon:"📦", title:"pulsechain.box",       desc:"Community-run PulseChain explorer",         url:"https://scan.pulsechain.box/" },
+          { icon:"🦦", title:"Otterscan",            desc:"Fast Otterscan explorer for PulseChain",    url:"https://otter.pulsechain.com/" },
+          { icon:"🔎", title:"PulseChain Explorer",  desc:"Official PulseChain block explorer",        url:"https://scan.pulsechain.com/" },
+          { icon:"⚓", title:"Midgard",              desc:"Alternative PulseChain explorer",           url:"https://midgard.wtf/" },
+          { icon:"🗺️", title:"Routescan",            desc:"Multi-chain explorer — chain 369",          url:"https://369.routescan.io/" },
+        ]
+      },
+
+      // ── Liquid Staking ───────────────────────────────────────
+      {
+        id    : "staking",
+        name  : "Liquid Staking PLS",
+        icon  : "🥩",
+        color : "purple",
+        links : [
+          { icon:"🥧", title:"Project Pi (stPLS)",  desc:"Liquid staking PLS — get stPLS",             url:"https://www.pipools.xyz/liquid-staking/" },
+          { icon:"✅", title:"Vouch (vPLS)",         desc:"Liquid staking PLS — get vPLS",              url:"https://app.vouch.run/PLS/" },
+          { icon:"⚡", title:"ValidatorX (uPLS)",    desc:"Liquid staking PLS — get uPLS",              url:"https://vx.plusx.app/" },
+        ]
+      },
+
+      // ── HEX ─────────────────────────────────────────────────
+      {
+        id    : "hex",
+        name  : "Hexico",
+        icon  : "💎",
+        color : "blue",
+        links : [
+          { icon:"💎", title:"HEX.COM",             desc:"Official HEX website",                       url:"https://hex.com/" },
+          { icon:"🔭", title:"HEXscout",            desc:"HEX analytics & tracker",                    url:"https://hexscout.com/" },
+          { icon:"🚀", title:"GO.HEX.COM",          desc:"Get started with HEX staking",               url:"https://go.hex.com/" },
+          { icon:"♾️", title:"Maximus Perpetuals",  desc:"Perpetual HEX stakes",                       url:"https://perpetuals.maximus.cash/" },
+          { icon:"⚙️", title:"Actuator",            desc:"HEX stake management tool",                  url:"https://app.actuator.finance/" },
+        ]
+      },
+
+      // ── Charts / Trackers ────────────────────────────────────
+      {
+        id    : "charts",
+        name  : "Charts / Trackers",
+        icon  : "📊",
+        color : "green",
+        links : [
+          { icon:"📈", title:"PlsCharts",       desc:"PulseChain price charts & analytics",            url:"https://www.plscharts.com/" },
+          { icon:"📊", title:"Dexscreener",     desc:"Real-time DEX charts on PulseChain",             url:"https://dexscreener.com/pulsechain/0xe56043671df55de5cdf8459710433c10324de0ae" },
+          { icon:"🦎", title:"GeckoTerminal",   desc:"DEX charts by CoinGecko",                        url:"https://www.geckoterminal.com/" },
+          { icon:"🔭", title:"HEXscout",        desc:"HEX-focused analytics & charts",                 url:"https://hexscout.com/" },
+          { icon:"👫", title:"FrenKabal",        desc:"PulseChain community portfolio tracker",         url:"https://frenkabal.com/" },
+        ]
+      },
+
+      // ── LP Farms ─────────────────────────────────────────────
+      {
+        id    : "farms",
+        name  : "LP Farms",
+        icon  : "🌾",
+        color : "purple",
+        links : [
+          { icon:"🎩", title:"Hocus Pocus",     desc:"Multi-farm management tool",                     url:"https://app.hocuspocus.finance/farms" },
+          { icon:"🌱", title:"$YIELD Farm",     desc:"Yield farming on Function Island",               url:"https://functionisland.com/yield?ref=0x8c5bcbD7CBeCB92172D534e1AEA03F48b24FaBbf" },
+          { icon:"🔥", title:"$EMIT Farm",      desc:"EMIT token yield farm",                          url:"https://emit.farm/" },
+          { icon:"🏦", title:"$IMPLS Vaults",   desc:"IMPLS yield vaults",                             url:"https://impls.finance/" },
+          { icon:"🟣", title:"$2PHUX Farms",    desc:"2PHUX LP farms on PulseChain",                   url:"https://app.2phux.io/" },
+        ]
+      },
+
+      // ── Wallets ──────────────────────────────────────────────
+      {
+        id    : "wallets",
+        name  : "Wallets",
+        icon  : "👛",
+        color : "blue",
+        links : [
+          { icon:"💰", title:"Internet Money",  desc:"PulseChain-native crypto wallet",                url:"https://internetmoney.io/" },
+          { icon:"💜", title:"PulseWallet",     desc:"The PulseChain community wallet",                url:"https://thepulsewallet.org/" },
+          { icon:"📤", title:"PulseSend",       desc:"Send tokens easily on PulseChain",               url:"https://pulsesend.io/" },
+          { icon:"🔒", title:"Ledger",          desc:"Hardware wallet security",                       url:"https://shop.ledger.com/?r=21b4476b35eb" },
+          { icon:"🌐", title:"OKX Wallet",      desc:"OKX multi-chain browser wallet",                 url:"https://chromewebstore.google.com/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge" },
+        ]
+      },
+
+      // ── Tokens / Lists ───────────────────────────────────────
+      {
+        id    : "tokens",
+        name  : "Tokens / Lists",
+        icon  : "📋",
+        color : "green",
+        links : [
+          { icon:"🏎️", title:"Pump.tires",       desc:"PulseChain token launchpad",                   url:"https://pump.tires/" },
+          { icon:"😂", title:"RH Memes",          desc:"Richard Heart meme token hub",                 url:"https://rhmemes.com/" },
+          { icon:"📋", title:"PulseCoinList",     desc:"PulseChain ecosystem token list",              url:"https://pulsecoinlist.com/ecosystem" },
+          { icon:"✅", title:"$VOUCH",            desc:"VOUCH token dashboard",                        url:"https://app.vouch.run/dashboard/" },
+          { icon:"1️⃣", title:"$A1A",             desc:"A1A token on PulseChain",                      url:"https://dexscreener.com/pulsechain/0xb2045a428b6661e7e16fa1aecd77ec03912828c7" },
+        ]
+      },
+
+      // ── Telegram Bots ────────────────────────────────────────
+      {
+        id    : "tg-bots",
+        name  : "Telegram Trading Bots",
+        icon  : "🤖",
+        color : "purple",
+        links : [
+          { icon:"💼", title:"Solid Trader",       desc:"PulseChain Telegram trading bot",             url:"https://t.me/solid_trader_bot?start=ref_plstart" },
+          { icon:"🎯", title:"BullsEye",            desc:"Precision Telegram trading bot",              url:"https://t.me/BullsEyeBetaBot?start=ref=REF_688323752" },
+          { icon:"🔫", title:"Prodigy Sniper Bot",  desc:"Token sniper bot on Telegram",               url:"https://t.me/ProdigySniperBot?start=BE25Y2" },
+          { icon:"🔄", title:"WenSwap Bot",         desc:"Swap tokens right in Telegram",              url:"https://t.me/WenSwap_Bot?start=15708" },
+          { icon:"🌊", title:"Pulsonic Bot",        desc:"PulseChain Telegram trading bot",            url:"https://t.me/PulsonicBot?start=r-2xNsCQf4pMXQY8AER" },
+        ]
+      },
+
+      // ── Community Chats ──────────────────────────────────────
+      {
+        id    : "chats",
+        name  : "Community Chats",
         icon  : "💬",
         color : "blue",
         links : [
-          { icon:"💬", title:"Discord",     desc:"Join the main community server",                 url:"https://discord.gg/yourcommunity" },
-          { icon:"✈️", title:"Telegram",   desc:"Official Telegram group and announcements",       url:"https://t.me/yourcommunity" },
-          { icon:"🐦", title:"X / Twitter",desc:"Follow us for live updates and news",             url:"https://x.com/yourcommunity" },
-          { icon:"🔴", title:"Reddit",     desc:"Community discussions and AMA sessions",          url:"https://reddit.com/r/yourcommunity" },
-          { icon:"▶️", title:"YouTube",   desc:"Educational videos and tutorials",                 url:"https://youtube.com/@yourcommunity" },
-          { icon:"💼", title:"LinkedIn",   desc:"Professional updates and announcements",           url:"https://linkedin.com/company/yourcommunity" },
+          { icon:"☀️", title:"Sunny's Pub",               desc:"Chill PulseChain community chat",     url:"https://t.me/sunnyspubv2" },
+          { icon:"👑", title:"DeFi Prince's Royal Lounge", desc:"DeFi Prince Telegram community",     url:"https://t.me/DeFiPrincesRoyalLounge" },
+          { icon:"🎰", title:"Degen Protocol",            desc:"Degen community Telegram group",      url:"https://t.me/Degen_Protocol" },
+          { icon:"🧑‍💼", title:"Degen Roundtable",         desc:"Crypto roundtable discussions",       url:"https://t.me/drtjoinnow" },
+          { icon:"🔮", title:"The Kryptonite Show",       desc:"PulseChain community show",           url:"https://t.me/TheKryptoniteShow" },
         ]
       },
 
-      // ── Tools & Analytics ───────────────────────────────────
+      // ── CEXs ─────────────────────────────────────────────────
+      {
+        id    : "cexs",
+        name  : "CEXs",
+        icon  : "🏛️",
+        color : "green",
+        links : [
+          { icon:"₿",  title:"Bitcointry",   desc:"Centralized exchange listing PLS",                 url:"https://bitcointry.com/?ref=zdYXOR602jzaXUO" },
+          { icon:"🔒", title:"Safetrade",    desc:"Secure CEX with PLS trading",                      url:"https://safetrade.com/" },
+          { icon:"🦘", title:"Kanga",        desc:"Kanga exchange — PLS trading pairs",               url:"https://trade.kanga.exchange/a/Cy3kuNQD" },
+        ]
+      },
+
+      // ── Other / Tools ────────────────────────────────────────
       {
         id    : "tools",
-        name  : "Tools & Analytics",
+        name  : "Other / Tools",
         icon  : "🔧",
-        color : "green",
-        links : [
-          { icon:"🔍", title:"Block Explorer",       desc:"Explore blocks, transactions, and addresses", url:"https://explorer.yourcommunity.com" },
-          { icon:"📊", title:"Analytics Dashboard",  desc:"Real-time on-chain stats and charts",         url:"https://stats.yourcommunity.com" },
-          { icon:"🏆", title:"Dune Analytics",       desc:"Community dashboards on Dune",                url:"https://dune.com/yourcommunity" },
-          { icon:"⚡", title:"Gas Tracker",          desc:"Live network gas price tracker",              url:"https://gas.yourcommunity.com" },
-          { icon:"📈", title:"DeFiLlama",            desc:"TVL and protocol data",                       url:"https://defillama.com/chain/YourCommunity" },
-          { icon:"🎯", title:"Token Terminal",       desc:"Revenue and fundamentals tracker",            url:"https://tokenterminal.com" },
-        ]
-      },
-
-      // ── DeFi & Apps ─────────────────────────────────────────
-      {
-        id    : "defi",
-        name  : "DeFi & Apps",
-        icon  : "💰",
         color : "purple",
         links : [
-          { icon:"🔄", title:"Flagship DEX",      desc:"Swap tokens on the main DEX",                    url:"https://dex.yourcommunity.com" },
-          { icon:"🏦", title:"Lending Protocol",  desc:"Lend and borrow with crypto assets",             url:"https://lend.yourcommunity.com" },
-          { icon:"🌾", title:"Yield Farming",     desc:"Farm yields with your liquidity positions",       url:"https://farm.yourcommunity.com" },
-          { icon:"🥩", title:"Staking",           desc:"Stake tokens and earn protocol rewards",          url:"https://stake.yourcommunity.com" },
-          { icon:"🎯", title:"Launchpad",         desc:"New project launches and IDOs",                  url:"https://launch.yourcommunity.com" },
-          { icon:"💎", title:"Portfolio Tracker", desc:"Track your full portfolio in one place",          url:"https://portfolio.yourcommunity.com" },
+          { icon:"🥧", title:"Project Pi Labs",   desc:"PulseChain infrastructure & tools",            url:"https://www.projectpilabs.com/" },
+          { icon:"📡", title:"G4MM4 (RPC)",        desc:"Free PulseChain RPC endpoint",                url:"https://www.g4mm4.io/" },
+          { icon:"🔌", title:"Pls.aff.icu (API)",  desc:"PulseChain price & data API",                url:"https://pls.aff.icu/" },
+          { icon:"🏆", title:"Top.dextop.pro",     desc:"Token leaderboard on PulseChain",            url:"https://top.dextop.pro/" },
+          { icon:"🔬", title:"dedaub",             desc:"Smart contract decompiler for PulseChain",    url:"https://app.dedaub.com/decompile?network=pulsechain" },
         ]
       },
 
-      // ── News & Media ─────────────────────────────────────────
+      // ── Shopping ─────────────────────────────────────────────
       {
-        id    : "news",
-        name  : "News & Media",
-        icon  : "📰",
+        id    : "shopping",
+        name  : "Shopping",
+        icon  : "🛍️",
         color : "blue",
         links : [
-          { icon:"📝", title:"Medium",          desc:"In-depth articles and analyses",               url:"https://medium.com/@yourcommunity" },
-          { icon:"📮", title:"Substack",        desc:"Weekly community breakdowns",                  url:"https://yourcommunity.substack.com" },
-          { icon:"🎙️", title:"Podcast",         desc:"Listen to the community podcast",              url:"https://podcast.yourcommunity.com" },
-          { icon:"📡", title:"Announcements",   desc:"Official team announcements channel",           url:"https://t.me/yourcommunity_ann" },
-          { icon:"🗞️", title:"Press Coverage",  desc:"Media mentions and press articles",            url:"https://yourcommunity.com/press" },
-        ]
-      },
-
-      // ── Bridges & Cross-Chain ────────────────────────────────
-      {
-        id    : "bridges",
-        name  : "Bridges & Cross-Chain",
-        icon  : "🌉",
-        color : "green",
-        links : [
-          { icon:"🌉", title:"Official Bridge",    desc:"Bridge assets to and from other chains",    url:"https://bridge.yourcommunity.com" },
-          { icon:"🔁", title:"Cross-Chain Swap",   desc:"Swap tokens across multiple chains",        url:"https://crosschain.yourcommunity.com" },
-          { icon:"⚓", title:"LayerZero",           desc:"Omnichain bridging via LayerZero",          url:"https://layerzero.network" },
-          { icon:"🌀", title:"Wormhole",            desc:"Fast cross-chain transfers via Wormhole",   url:"https://wormhole.com" },
-          { icon:"🦅", title:"deBridge",            desc:"High-speed cross-chain bridge protocol",   url:"https://debridge.finance" },
-        ]
-      },
-
-      // ── NFTs & Collectibles ──────────────────────────────────
-      {
-        id    : "nfts",
-        name  : "NFTs & Collectibles",
-        icon  : "🎨",
-        color : "purple",
-        links : [
-          { icon:"🖼️", title:"NFT Marketplace",    desc:"Buy, sell, and trade community NFTs",        url:"https://nft.yourcommunity.com" },
-          { icon:"🏅", title:"Official Collection", desc:"The official community NFT collection",      url:"https://nft.yourcommunity.com/collection" },
-          { icon:"🎰", title:"NFT Rarity",          desc:"Check the rarity score of your NFTs",        url:"https://rarity.tools/yourcommunity" },
-          { icon:"🛒", title:"OpenSea",             desc:"Trade community NFTs on OpenSea",            url:"https://opensea.io/collection/yourcommunity" },
-          { icon:"🔮", title:"Blur",                desc:"Trade community NFTs on Blur",               url:"https://blur.io/collection/yourcommunity" },
-        ]
-      },
-
-      // ── Developers ──────────────────────────────────────────
-      {
-        id    : "dev",
-        name  : "Developers",
-        icon  : "👨‍💻",
-        color : "green",
-        links : [
-          { icon:"🐙", title:"GitHub",          desc:"Source code and open-source repositories",  url:"https://github.com/yourcommunity" },
-          { icon:"📋", title:"Developer Docs",  desc:"API references and integration guides",     url:"https://dev.yourcommunity.com" },
-          { icon:"🧪", title:"Testnet Faucet",  desc:"Get free testnet tokens for development",   url:"https://faucet.yourcommunity.com" },
-          { icon:"🏗️", title:"Builder Grants",  desc:"Apply for ecosystem grants and funding",    url:"https://grants.yourcommunity.com" },
-          { icon:"🔌", title:"SDK / npm",       desc:"Official SDKs and npm packages",            url:"https://npmjs.com/org/yourcommunity" },
-          { icon:"💬", title:"Dev Discord",     desc:"Developer support and discussions",         url:"https://discord.gg/yourcommunity-dev" },
+          { icon:"🛒", title:"The Pulsican Store",    desc:"PulseChain merch store",                   url:"https://pulsicanstore.com/plstartme" },
+          { icon:"📤", title:"PulseSend",             desc:"Send crypto as payment on PulseChain",     url:"https://pulsesend.io/" },
+          { icon:"🎨", title:"Crypto-stickers.com",   desc:"Crypto-themed stickers & merch",           url:"https://crypto-stickers.com/" },
+          { icon:"🥃", title:"SUN Minimeal",          desc:"Meal subscription paid in crypto",         url:"https://minimeal.com/" },
+          { icon:"🐝", title:"CoinsBee",              desc:"Buy gift cards with crypto",               url:"https://www.coinsbee.com/" },
         ]
       },
 
